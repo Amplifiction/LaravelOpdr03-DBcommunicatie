@@ -29,7 +29,7 @@ class GamesController extends Controller
     public function create()
     {
         $game = new Game();
-        $publishers = Publisher::all();
+        $publishers = Publisher::all(); // voor form select
         return view('games.create' , [
             'game' => $game,
             'publishers' => $publishers
@@ -72,12 +72,12 @@ class GamesController extends Controller
      */
     public function show(Game $game)
     {
-        $publisher = Publisher::where('id', $game->publisher_id)->first();
+        // $publisher = Publisher::where('id', $game->publisher_id)->first();
         $games = Game::where('publisher_id',  $game->publisher_id)->get();
         return view('games.show', [
             'game' => $game,
             'games' => $games,
-            'publisher' => $publisher
+            // 'publisher' => $publisher
         ]);
     }
 
@@ -89,8 +89,10 @@ class GamesController extends Controller
      */
     public function edit(Game $game)
     {
+        $publishers = Publisher::all(); //voor form select
         return view('games.edit', [
-            'game' => $game
+            'game' => $game,
+            'publishers' => $publishers
         ]);
     }
 
@@ -110,7 +112,7 @@ class GamesController extends Controller
 
         $game->name = $request->name;
         $game->publisher_id = $request->publisher_id;
-        $game->completed = $request->completed;
+        $game->completed = $request->has('completed');
         $game->save();
 
         return redirect()->route('games.show', $game);

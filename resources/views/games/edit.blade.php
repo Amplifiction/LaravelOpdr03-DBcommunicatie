@@ -8,11 +8,12 @@
 
     <h2 class="text-4xl font-semibold mb-4">Edit game</h2>
 
-    <form class="bg-gray-100 shadow-2xl p-4 rounded-lg" action="{{ route('games.update', 1) }}" method="post">
+    <form class="bg-gray-100 shadow-2xl p-4 rounded-lg" action="{{ route('games.update', $game) }}" method="post">
         @csrf
+        @method('put')
         @include('games.includes.form', [
             'buttonText' => 'Edit game',
-            // 'game' => $game
+            'game' => $game
         ])
     </form>
 @endsection
