@@ -1,7 +1,7 @@
 <tr class="even:bg-gray-100 odd:bg-gray-200">
     <td class="p-2 text-lg flex flex-col">
         <a href="{{ route('publishers.show', ['publisher' => $publisher]) }}" class="hover:underline">{{$publisher->name}}</a>
-        <span class="text-gray-500 text-sm">{{$publisher->games->count()}} games</span>
+        <span class="text-gray-500 text-sm">{{$publisher->games->count()}} game{{$publisher->games->count()<>1?'s':''}}</span>
     </td>
     <td class="p-2">
         <a href="{{ route('publishers.show', $publisher) }}" class="px-4 py-1 bg-blue-200 hover:bg-blue-300 text-blue-500 hover:text-blue-600">View</a>

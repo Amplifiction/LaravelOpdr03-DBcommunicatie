@@ -151,7 +151,7 @@ class GamesController extends Controller
         $game->completed = !$game->completed; //Dit is een toggle. ! betekent NOT. Indien not false: wordt true en omgekeerd.
         $game->save();
 
-        return redirect()->route('games.show', $game);
+        return redirect()->route('games.index'); //Vervelend kiezen: index of show? Show is verwarrend indien je onder games.show > other games table op mark (in)complete klikt. De show wordt dan die van het gewijzigde spel ipv het spel waar je zat.
     }
 
     // public function markincomplete(Game $game) //overbodig owv bovenstaande toggle.

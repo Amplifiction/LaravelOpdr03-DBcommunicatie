@@ -25,6 +25,6 @@ Route::resources([
 
 Route::redirect('/', route('games.index'));
 
-//eigenlijk moet dit put ipv get zijn, maar even get owv a (actions.blade.php) en die ondersteunt enkel get. Alternatief indien je route::post wil: form maken met method post dat eruit ziet als een link.
+//eigenlijk moet dit put ipv get zijn, maar even get owv a (in actions.blade.php) en a ondersteunt enkel get. Alternatief indien je route::post wil: form maken (method post) dat eruit ziet als een link.
 Route::get('games/{game}/markcomplete', [GamesController::class, 'markcomplete'])->name('games.complete');
 //Route::get('games/{game}/markincomplete', [GamesController::class,'markincomplete'])->name('games.incomplete'); //Overbodig geworden nadat in er een "toggle" in markcomplete werd opgenomen.
