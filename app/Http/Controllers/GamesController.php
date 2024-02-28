@@ -73,7 +73,10 @@ class GamesController extends Controller
     public function show(Game $game)
     {
         // $publisher = Publisher::where('id', $game->publisher_id)->first();
-        $games = Game::where('publisher_id',  $game->publisher_id)->get();
+        $games = Game::where([
+            'publisher_id' => $game->publisher_id,
+            ['id', '!=', $game->id]
+            ])->get();
         return view('games.show', [
             'game' => $game,
             'games' => $games,
@@ -142,4 +145,20 @@ class GamesController extends Controller
         $game->delete();
         return redirect()->route('games.index');
     }
+
+    public function markcomplete(Game $game)
+    {
+        $game->completed = !$game->completed; //Dit is een toggle. ! betekent NOT. Indien not false: wordt true en omgekeerd.
+        $game->save();
+
+        return redirect()->route('games.show', $game);
+    }
+
+    // public function markincomplete(Game $game) //overbodig owv bovenstaande toggle.
+    // {
+    //     $game->completed = 0;
+    //     $game->save();
+
+    //     return redirect()->route('games.show', $game);
+    // }
 }

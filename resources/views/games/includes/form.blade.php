@@ -14,7 +14,7 @@
         <select class="px-4 py-2 rounded w-full bg-gray-200 shadow-inner" name="publisher_id" id="publisher_id">
             <option disabled>-- Select a publisher</option>
             @forelse ($publishers as $publisher)
-                <option value="{{$publisher->id}}" @selected(old('publisher_id', $publisher->id) == $game->publisher->id)>{{$publisher->name}}</option> {{--Wordt niet ingevuld met tabelwaarde--}}
+                <option value="{{$publisher->id}}" @selected(old('publisher_id', $publisher->id) == $game->publisher_id)>{{$publisher->name}}</option> {{--Wordt niet ingevuld met tabelwaarde--}}
             @empty
                 <option disabled>no publishers added yet...</option>
             @endforelse
